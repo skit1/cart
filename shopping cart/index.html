@@ -1,0 +1,185 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Basket</title>
+    <link rel="stylesheet" href="./shop.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <main>
+      <div class="basket" id="cartitem1">
+        <div class="basket-labels">
+          <ul>
+            <li class="item item-heading">Item</li>
+            <li id="gprice" class="price">Price</li>
+            <li class="quantity">Quantity</li>
+            <li class="subtotal">Subtotal</li>
+          </ul>
+        </div>
+        <div class="basket-product">
+          <div class="item">
+            <div class="product-image">
+              <img
+                src="black.jpg"
+                alt="Placholder Image 2"
+                class="product-frame"
+              />
+            </div>
+            <div class="product-details">
+              <h1>Amella Lace Midi Dress</h1>
+              <p><strong>Navy, Size 18</strong></p>
+              <i class=" heart1 fa-solid fa-heart"></i>
+            </div>
+          </div>
+          <div class="price" id="unitprice1">26.00</div>
+          <div class="quantity">
+            <button class="btn-min" onclick="removeOneFunction1()">-</button>
+            <span class="quantity-field" id="amount1">1</span>
+            <button class="btn-add" onclick="addOneFunction1()">+</button>
+          </div>
+          <div class="subtotal" id="subtotalprice1">26.00</div>
+
+  <div><button onclick="deletecard1(this)">Remove</button></div>
+        </div>
+      </div>
+
+      <div class="basket" id="cartitem2">
+        <div class="basket-labels">
+          <ul>
+            <li class="item item-heading">Item</li>
+            <li id="gprice" class="price">Price</li>
+            <li class="quantity">Quantity</li>
+            <li class="subtotal">Subtotal</li>
+          </ul>
+        </div>
+        <div class="basket-product">
+          <div class="item">
+            <div class="product-image">
+              <img
+                src="wwhite.jpg"
+                alt="Placholder Image 2"
+                class="product-frame"
+              />
+            </div>
+            <div class="product-details">
+              <h1>Lace Sleeve Cuff Dress</h1>
+              <p><strong>Navy, Size 18</strong></p>
+              <i class=" heart1 fa-solid fa-heart"></i>
+            </div>
+          </div>
+          <div class="price" id="unitprice2">25.00</div>
+          <div class="quantity">
+            <button class="btn-min" onclick="removeOneFunction2()">-</button>
+            <span class="quantity-field" id="amount2">1</span>
+            <button class="btn-add" onclick="addOneFunction2()">+</button>
+          </div>
+          <div class="subtotal" id="subtotalprice2">25.00</div>
+  <div><button onclick="deletecard1(this)">Remove</button></div>
+
+        </div>
+      </div>
+
+      <aside>
+        <div class="summary">
+          <div class="summary-total-items">
+            <span class="total-items"></span> Items in your Bag
+          </div>
+
+          <div class="summary-total">
+            <div class="total-title">Total</div>
+            <div class="total-value final-value" id="total">51.00</div>
+          </div>
+          <div class="summary-checkout">
+            <button class="checkout-cta" onclick="checkout()">
+              Go to Secure Checkout
+            </button>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </body>
+  <script>
+    function calculatesubTotal() {
+      document.getElementById("subtotalprice1").innerHTML =
+        parseInt(document.getElementById("amount1").innerHTML) *
+        parseInt(document.getElementById("unitprice1").innerHTML);
+      document.getElementById("subtotalprice2").innerHTML =
+        parseInt(document.getElementById("amount2").innerHTML) *
+        parseInt(document.getElementById("unitprice2").innerHTML);
+      document.getElementById("total").innerHTML =
+        parseInt(document.getElementById("subtotalprice1").innerHTML) +
+        parseInt(document.getElementById("subtotalprice2").innerHTML);
+    }
+
+    function addOneFunction1() {
+      document.getElementById("amount1").innerHTML =
+        parseInt(document.getElementById("amount1").innerHTML) + 1;
+      calculatesubTotal();
+    }
+
+    function removeOneFunction1() {
+      let amountValue = document.getElementById("amount1").innerHTML;
+      if (amountValue <= 0) {
+        return false;
+      } else {
+        document.getElementById("amount1").innerHTML =
+          parseInt(document.getElementById("amount1").innerHTML) - 1;
+        calculatesubTotal();
+      }
+    }
+
+    function addOneFunction2() {
+      document.getElementById("amount2").innerHTML =
+        parseInt(document.getElementById("amount2").innerHTML) + 1;
+      calculatesubTotal();
+    }
+
+    function removeOneFunction2() {
+      let amountValue = document.getElementById("amount2").innerHTML;
+      if (amountValue <= 0) {
+        return false;
+      } else {
+        document.getElementById("amount2").innerHTML =
+          parseInt(document.getElementById("amount2").innerHTML) - 1;
+        calculatesubTotal();
+      }
+    }
+
+    //HEDHI AAL BUTTON MTAA CHECK OUT
+
+    function checkout() {
+      if (parseInt(document.getElementById("total").innerHTML) == 0) {
+        alert("You have to add items to your shopping cart!");
+      }
+    }
+    function deletecard1(e){
+    // document.getElementById("cartitem1").remove();
+    // 
+    var t=document.getElementById("total")
+    var prix=e.parentElement.previousElementSibling.innerHTML
+    t.innerHTML=t.innerHTML-prix
+    e.parentElement.parentElement.parentElement.remove()
+// console.log("total",t)
+// console.log("prix",prix)
+}
+const heart1 = document.getElementsByClassName('heart1')
+for (let i = 0; i < heart1.length; i++) {
+  heart1[i].addEventListener('click',function onclick(){
+  heart1[i].style.background = 'white';
+  heart1[i].style.color = 'red';
+}
+);
+  
+}
+
+  </script>
+</html>
